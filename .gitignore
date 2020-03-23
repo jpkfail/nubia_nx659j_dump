@@ -1,0 +1,4 @@
+vendor/etc/dts/dts-eagle.lic
+system/system/priv-app/Camera/Camera.apk
+system/system/etc/faceclassifier/faceclassifier.dlc
+product/priv-app/Settings/Settings.apk
