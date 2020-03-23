@@ -1,0 +1,26 @@
+
+#Nubia add start, for woodpeckerd
+service woodpeckerd /system/bin/woodpeckerd
+    class main
+    user root
+    group root system sdcard_rw sdcard_r media_rw vendor_qti_diag
+    socket woodpeckerd stream 0666 root system u:r:woodpeckerd:s0
+    seclabel u:r:woodpeckerd:s0
+on property:sys.nblog.control=on
+    start woodpeckerd
+
+on property:sys.nubia.modemdump=on
+    copydir /data/vendor/tombstones/SDX55M /data/anr
+
+on property:sys.nubia.fp.dump=on
+    copydir /data/vendor/goodix /sdcard/nubialog
+
+on property:sys.nubia.cts.mode=1
+    stop woodpeckerd
+
+on property:persist.sys.woodpeckerd.restart=*
+    restart woodpeckerd
+
+on property:persist.sys.fp.goodix.dump_data=on
+    setprop persist.vendor.goodix.dump_data 1
+#Nubia add end
